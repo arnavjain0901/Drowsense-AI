@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="220" viewBox="0 0 520 220" role="img" aria-labelledby="title desc">
+  <title id="title">Drowsense AI</title>
+  <desc id="desc">A stylized cyan eye with a subtle circuit motif and Drowsense AI wordmark.</desc>
+  <defs>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="520" height="220" rx="28" fill="#0b1220"/>
+  <path d="M35 82 Q105 18 175 82 Q105 146 35 82Z" fill="none" stroke="url(#cyan)" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="105" cy="82" r="25" fill="none" stroke="#67e8f9" stroke-width="7"/>
+  <circle cx="105" cy="82" r="9" fill="#22d3ee"/>
+  <path d="M26 82H14 M196 82H184 M105 29V18 M105 146V135" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/>
+  <path d="M164 45 L184 25 H202 M164 119 L184 139 H202" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="224" y="83" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#f8fafc">Drowsense</text>
+  <text x="225" y="125" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#22d3ee">AI</text>
+  <text x="225" y="158" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="3" fill="#94a3b8">DRIVER AWARENESS</text>
+</svg>
