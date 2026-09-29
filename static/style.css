@@ -1,0 +1,804 @@
+/* =========================================================
+   DROWSENSE AI
+   Main Dashboard Styling
+   ========================================================= */
+
+:root {
+    --bg: #070a0f;
+    --panel: #0e131a;
+    --panel-light: #151b23;
+    --border: #242d38;
+
+    --text: #f4f7fb;
+    --muted: #7f8b99;
+
+    --green: #00e887;
+    --green-soft: rgba(0, 232, 135, 0.12);
+
+    --yellow: #ffd43b;
+    --yellow-soft: rgba(255, 212, 59, 0.12);
+
+    --red: #ff3b4f;
+    --red-soft: rgba(255, 59, 79, 0.14);
+
+    --blue: #4d8dff;
+    --blue-soft: rgba(77, 141, 255, 0.12);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(77, 141, 255, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 232, 135, 0.05),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.topbar {
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: rgba(14, 19, 26, 0.88);
+
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(18px);
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--blue-soft);
+
+    border: 1px solid rgba(77, 141, 255, 0.3);
+
+    color: var(--blue);
+
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.brand-text h1 {
+    margin: 0;
+
+    font-size: 20px;
+
+    letter-spacing: 0.5px;
+}
+
+.brand-text p {
+    margin: 3px 0 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px rgba(0, 232, 135, 0.45);
+
+    animation: pulse 1.8s infinite;
+}
+
+.header-fps {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.header-fps strong {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.container {
+    width: min(1500px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 28px 0 45px;
+}
+
+
+/* =========================================================
+   TOP GRID
+   ========================================================= */
+
+.top-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 2fr)
+        minmax(330px, 0.9fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.025),
+            rgba(255,255,255,0.008)
+        ),
+        var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.25);
+
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.card-title {
+    margin: 0;
+
+    font-size: 14px;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+.card-subtitle {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CAMERA
+   ========================================================= */
+
+.camera-card {
+    position: relative;
+}
+
+.camera-container {
+    position: relative;
+
+    background: #020304;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+}
+
+.camera-feed {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* Camera corner brackets */
+
+.camera-container::before,
+.camera-container::after {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+.camera-container::before {
+    top: 16px;
+    left: 16px;
+
+    border-top: 2px solid rgba(255,255,255,0.6);
+    border-left: 2px solid rgba(255,255,255,0.6);
+}
+
+.camera-container::after {
+    right: 16px;
+    bottom: 16px;
+
+    border-right: 2px solid rgba(255,255,255,0.6);
+    border-bottom: 2px solid rgba(255,255,255,0.6);
+}
+
+
+/* Camera overlay */
+
+.camera-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.camera-label {
+    position: absolute;
+
+    top: 16px;
+    left: 16px;
+
+    padding: 7px 10px;
+
+    background: rgba(0,0,0,0.55);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 7px;
+
+    color: white;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.camera-time {
+    position: absolute;
+
+    right: 16px;
+    top: 16px;
+
+    padding: 7px 10px;
+
+    background: rgba(0,0,0,0.55);
+
+    border-radius: 7px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   DRIVER STATUS
+   ========================================================= */
+
+.status-panel {
+    padding: 20px;
+}
+
+.status-box {
+    border-radius: 14px;
+
+    padding: 20px;
+
+    background: var(--green-soft);
+
+    border: 1px solid rgba(0,232,135,0.2);
+
+    transition:
+        background 0.3s,
+        border 0.3s,
+        box-shadow 0.3s;
+}
+
+.status-box.warning {
+    background: var(--yellow-soft);
+
+    border-color: rgba(255,212,59,0.3);
+}
+
+.status-box.danger {
+    background: var(--red-soft);
+
+    border-color: rgba(255,59,79,0.35);
+
+    box-shadow:
+        0 0 35px rgba(255,59,79,0.12);
+}
+
+.status-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-label {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+.status-main {
+    margin-top: 7px;
+
+    font-size: 25px;
+
+    font-weight: 750;
+
+    color: var(--green);
+
+    transition: color 0.3s;
+}
+
+.status-box.warning .status-main {
+    color: var(--yellow);
+}
+
+.status-box.danger .status-main {
+    color: var(--red);
+}
+
+.status-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.06);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   SCORE
+   ========================================================= */
+
+.score-section {
+    margin-top: 22px;
+}
+
+.score-heading {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+}
+
+.score-heading span:first-child {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.score-number {
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.score-track {
+    height: 10px;
+
+    background: #202832;
+
+    border-radius: 100px;
+
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: inherit;
+
+    background: var(--green);
+
+    transition:
+        width 0.35s ease,
+        background 0.35s ease;
+}
+
+
+/* =========================================================
+   METRICS
+   ========================================================= */
+
+.metrics-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.metric {
+    padding: 14px;
+
+    background: var(--panel-light);
+
+    border: 1px solid rgba(255,255,255,0.04);
+
+    border-radius: 11px;
+}
+
+.metric-label {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.metric-value {
+    margin-top: 5px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    font-variant-numeric: tabular-nums;
+}
+
+.metric-unit {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-left: 2px;
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.controls {
+    padding: 0 20px 20px;
+}
+
+.button {
+    width: 100%;
+
+    border: 1px solid rgba(77,141,255,0.35);
+
+    background: var(--blue-soft);
+
+    color: #8db6ff;
+
+    padding: 12px 15px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.button:hover {
+    background: rgba(77,141,255,0.2);
+
+    transform: translateY(-1px);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   LOWER CARDS
+   ========================================================= */
+
+.lower-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+.chart-card {
+    min-height: 250px;
+}
+
+.chart-container {
+    height: 190px;
+
+    padding: 15px 20px 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   HEAD POSE
+   ========================================================= */
+
+.pose-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+    gap: 10px;
+
+    padding: 20px;
+}
+
+.pose-item {
+    text-align: center;
+
+    padding: 20px 10px;
+
+    background: var(--panel-light);
+
+    border-radius: 12px;
+}
+
+.pose-axis {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.pose-value {
+    margin-top: 8px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   CALIBRATION
+   ========================================================= */
+
+.calibration {
+    padding: 15px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.calibration-value {
+    color: var(--text);
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    margin-top: 25px;
+
+    text-align: center;
+
+    color: #4f5a66;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes pulse {
+
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .top-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lower-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .header-fps {
+        display: none;
+    }
+
+    .container {
+        width: calc(100% - 20px);
+        padding-top: 15px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}

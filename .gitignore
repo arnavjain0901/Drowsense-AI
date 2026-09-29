@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+.env
+drowsiness_log.csv
+.DS_Store

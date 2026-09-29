@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Drowsense AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     HEADER
+     ====================================================== -->
+
+<header class="topbar">
+
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            DS
+        </div>
+
+        <div class="brand-text">
+
+            <h1>Drowsense AI</h1>
+
+            <p>
+                Driver Monitoring System
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-status">
+
+        <div class="live-indicator">
+
+            <span class="live-dot"></span>
+
+            SYSTEM ACTIVE
+
+        </div>
+
+
+        <div class="header-fps">
+
+            <strong id="headerFps">
+                0
+            </strong>
+
+            FPS
+
+        </div>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- ======================================================
+     MAIN
+     ====================================================== -->
+
+<main class="container">
+
+
+    <!-- ==================================================
+         TOP SECTION
+         ================================================== -->
+
+    <section class="top-grid">
+
+
+        <!-- CAMERA -->
+
+        <div class="card camera-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        Live Camera
+                    </h2>
+
+                    <span class="card-subtitle">
+                        Real-time facial analysis
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="camera-container">
+
+
+                <img
+                    class="camera-feed"
+                    src="{{ url_for('video_feed') }}"
+                    alt="Live camera feed"
+                >
+
+
+                <div class="camera-overlay">
+
+                    <div class="camera-label">
+                        LIVE
+                    </div>
+
+                    <div
+                        id="cameraTime"
+                        class="camera-time"
+                    >
+                        --:--:--
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status-panel">
+
+                <div
+                    id="statusBox"
+                    class="status-box"
+                >
+
+                    <div class="status-top">
+
+                        <div>
+
+                            <div class="status-label">
+                                Driver status
+                            </div>
+
+                            <div
+                                id="statusMain"
+                                class="status-main"
+                            >
+                                STARTING
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="statusIcon"
+                            class="status-icon"
+                        >
+                            ...
+                        </div>
+
+                    </div>
+
+
+                    <!-- SCORE -->
+
+                    <div class="score-section">
+
+                        <div class="score-heading">
+
+                            <span>
+                                Drowsiness Score
+                            </span>
+
+                            <span
+                                id="score"
+                                class="score-number"
+                            >
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="score-track">
+
+                            <div
+                                id="scoreFill"
+                                class="score-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             METRICS
+             ================================================== -->
+
+        <div class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        Driver Metrics
+                    </h2>
+
+                    <span class="card-subtitle">
+                        Live biometric measurements
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-panel">
+
+
+                <div class="metrics-grid">
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Eye Aspect Ratio
+                        </div>
+
+                        <div
+                            id="ear"
+                            class="metric-value"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            EAR Threshold
+                        </div>
+
+                        <div
+                            id="threshold"
+                            class="metric-value"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Mouth Ratio
+                        </div>
+
+                        <div
+                            id="mar"
+                            class="metric-value"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Face
+                        </div>
+
+                        <div
+                            id="face"
+                            class="metric-value"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Pitch
+                        </div>
+
+                        <div
+                            id="pitch"
+                            class="metric-value"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            FPS
+                        </div>
+
+                        <div
+                            id="fps"
+                            class="metric-value"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- CALIBRATION -->
+
+            <div class="calibration">
+
+                <span>
+                    EAR Calibration
+                </span>
+
+                <span
+                    id="calibration"
+                    class="calibration-value"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <div class="controls">
+
+                <button
+                    class="button"
+                    onclick="recalibrate()"
+                >
+                    RECALIBRATE DRIVER
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         LOWER SECTION
+         ================================================== -->
+
+    <section class="lower-grid">
+
+
+        <!-- EAR GRAPH -->
+
+        <div class="card chart-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        Eye Activity
+                    </h2>
+
+                    <span class="card-subtitle">
+                        EAR history
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="earChart"
+                ></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- MAR GRAPH -->
+
+        <div class="card chart-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        Mouth Activity
+                    </h2>
+
+                    <span class="card-subtitle">
+                        MAR history
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="marChart"
+                ></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- HEAD POSE -->
+
+        <div class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        Head Pose
+                    </h2>
+
+                    <span class="card-subtitle">
+                        Facial orientation
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="pose-grid">
+
+
+                <div class="pose-item">
+
+                    <div class="pose-axis">
+                        PITCH
+                    </div>
+
+                    <div
+                        id="posepitch"
+                        class="pose-value"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="pose-item">
+
+                    <div class="pose-axis">
+                        YAW
+                    </div>
+
+                    <div
+                        id="poseyaw"
+                        class="pose-value"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="pose-item">
+
+                    <div class="pose-axis">
+                        ROLL
+                    </div>
+
+                    <div
+                        id="poseroll"
+                        class="pose-value"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <div class="footer">
+
+        DROWSENSE AI · LOCAL DRIVER MONITORING SYSTEM
+
+    </div>
+
+
+</main>
+
+
+<!-- ======================================================
+     JAVASCRIPT
+     ====================================================== -->
+
+<script
+    src="{{ url_for('static', filename='app.js') }}"
+></script>
+
+
+</body>
+
+</html>
